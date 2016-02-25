@@ -1,8 +1,73 @@
+# Deep Descriptors
+
 This repository contains the code release for our 2015 ICCV paper. If you do use it, please cite:
 
 "Discriminative Learning of Deep Convolutional Feature Point Descriptors"  
 Edgar Simo-Serra, Eduard Trulls, Luis Ferraz, Iasonas Kokkinos, Pascal Fua and Francesc Moreno-Noguer  
 International Conference on Computer Vision (ICCV), 2015
 
-The code will be uploaded by the time the conference takes place (Dec. 2015).
+## Overview
+
+We learn compact discriminative feature point descriptors using a convolutional
+neural network. We directly optimize for using L2 distance by training with a
+pair of corresponding and non-corresponding patches correspond to small and
+large distances respectively using a Siamese architecture. We deal with the
+large number of potential pairs with the combination of a stochastic sampling
+of the training set and an aggressive mining strategy biased towards patches
+that are hard to classify. The resulting descriptor is 128 dimensions that can
+be used as a drop-in replacement for any task involving SIFT. We show that this
+descriptor generalizes well to various datasets.
+
+See [the website](http://hi.cs.waseda.ac.jp/~esimo/research/deepdesc/) for more
+detailed information information.
+
+## Models
+
+Four different models are made avaiable. Best iteration is chosen with a
+validation subset. Model and training procedure is the same for all models,
+only the training data varies. If not sure what model to use, use
+`models/CNN3_p8_n8_split4_073000.t7`.
+
+* `models/CNN3_p8_n8_split1_072000.t7`: Trained on Liberty and Yosemite.
+* `models/CNN3_p8_n8_split2_104000.t7`: Trained on Liberty and Notre Dame.
+* `models/CNN3_p8_n8_split3_067000.t7`: Trained on Yosemite and Notre Dame.
+* `models/CNN3_p8_n8_split4_073000.t7`: Trained on a subset of Liberty, Yosemite, and Notre Dame.
+
+## Usage
+
+### Torch
+
+See `example.lua` for the full example file.
+
+Load a model:
+
+```lua
+model = torch.load( 'models/CNN3_p8_n8_split4_073000.t7' )
+```
+
+Normalize the patches, which should be a `Nx1x64x64` 4D float tensor with a range of 0-255:
+
+```lua
+for i=1,patches:size(1) do
+   patches[i] = patches[i]:add( -model.mean ):cdiv( model.std )
+end
+
+```
+
+Compute the 128-float descriptors for all the N patches:
+
+```lua
+descriptors = model.desc:forward( patches )
+```
+
+Note the output will be a `Nx128` 2D float tensor where each row is a descriptor.
+
+## Notes
+
+Models are trained from scratch and not the models used in the paper as there
+was an incompatibility with newer torch versions. Results should be comparable
+in all cases.
+
+
+
 
