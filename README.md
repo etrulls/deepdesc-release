@@ -6,8 +6,6 @@ This repository contains the code release for our 2015 ICCV paper. If you do use
 Edgar Simo-Serra, Eduard Trulls, Luis Ferraz, Iasonas Kokkinos, Pascal Fua and Francesc Moreno-Noguer  
 International Conference on Computer Vision (ICCV), 2015
 
-
-
 The code is based on the [Torch7](http://torch.ch) framework.
 
 ## Overview
@@ -81,6 +79,36 @@ descriptors = model.desc:forward( patches )
 ```
 
 Note the output will be a `Nx128` 2D float tensor where each row is a descriptor.
+
+### Matlab
+
+It is possible to use Matlab by calling torch. For this purpose please look at
+the files in `matlab/`. In particular, by calling `matlab/desc.lua` from
+Matlab, batches of descriptors can be processed. This is done by using the code
+in `matlab/example.m`:
+
+```matlab
+patches = randn( 64, 64, 1, 2 );
+
+save( 'patches.mat', 'patches' );
+system( 'th desc.lua' );
+desc = load( 'desc.mat' );
+
+desc.x
+```
+
+As the Matlab matrix ordering is the opposite of Torch, please use the
+`64x64x1xN` inputs with values in the 0-255 range.  Please note that this
+creates temporary files `patches.mat` and `desc.mat` each time it is called.
+You can also specify which model to use with:
+
+```matlab
+system( 'th desc.lua --model ../models/CNN3_p8_n8_split4_073000.t7' )
+```
+
+As this has a fair amount of overhead, use large batches to get best
+performance.
+
 
 ## Citing
 
