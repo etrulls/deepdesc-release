@@ -82,10 +82,10 @@ Note the output will be a `Nx128` 2D float tensor where each row is a descriptor
 
 ### Matlab
 
-It is possible to use Matlab by calling torch. For this purpose please look at
-the files in `matlab/`. In particular, by calling `matlab/desc.lua` from
-Matlab, batches of descriptors can be processed. This is done by using the code
-in `matlab/example.m`:
+It is possible to use Matlab by calling torch. This also requires the
+`mattorch` package to work. Please look at the files in `matlab/`. In
+particular, by calling `matlab/desc.lua` from Matlab, batches of descriptors
+can be processed. This is done by using the code in `matlab/example.m`:
 
 ```matlab
 patches = randn( 64, 64, 1, 2 );
