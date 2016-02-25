@@ -21,6 +21,22 @@ descriptor generalizes well to various datasets.
 See [the website](http://hi.cs.waseda.ac.jp/~esimo/research/deepdesc/) for more
 detailed information information.
 
+## License
+
+```
+Copyright (C) <2016> <Edgar Simo-Serra, Eduard Trulls>
+
+This work is licensed under the Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+Edgar Simo-Serra, Waseda University, February 2016.
+esimo@aoni.waseda.jp, http://hi.cs.waseda.ac.jp/~esimo/
+Eduard Trulls, EPFL, February 2016.
+eduard.trulls@epfl.ch, http://cvlabwww.epfl.ch/~trulls/
+```
+
 ## Models
 
 Four different models are made avaiable. Best iteration is chosen with a
