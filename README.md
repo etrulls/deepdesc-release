@@ -6,6 +6,8 @@ This repository contains the code release for our 2015 ICCV paper. If you do use
 Edgar Simo-Serra, Eduard Trulls, Luis Ferraz, Iasonas Kokkinos, Pascal Fua and Francesc Moreno-Noguer  
 International Conference on Computer Vision (ICCV), 2015
 
+
+
 The code is based on the [Torch7](http://torch.ch) framework.
 
 ## Overview
@@ -79,6 +81,19 @@ descriptors = model.desc:forward( patches )
 ```
 
 Note the output will be a `Nx128` 2D float tensor where each row is a descriptor.
+
+## Citing
+
+If you use this code please cite:
+
+```
+@InProceedings{SimoSerraICCV2015,
+   author    = {Edgar Simo-Serra and Eduard Trulls and Luis Ferraz and Iasonas Kokkinos and Pascal Fua and Francesc Moreno-Noguer},
+   title     = {{Discriminative Learning of Deep Convolutional Feature Point Descriptors}},
+   booktitle = "Proceedings of the International Conference on Computer Vision (ICCV)",
+   year      = 2015,
+}
+```
 
 ## Notes
 
